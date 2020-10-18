@@ -1,0 +1,41 @@
+<%-include('../partials/header') %>
+<div class="container-fluid">
+    <header>
+        
+        <div class="center info-center mt-5">
+            <h1>Welcome to Book Store App</h1>
+            <p>View our hand-picked Books by the authors from all over the world</p>
+            <p>
+                <a class="btn btn-primary btn-large" href="/books/new">Add New books</a>
+            </p>
+        </div>
+        
+    </header>
+   
+</div><div class="container">
+    <div class="row text-center center">
+        <% if(books.length==0){ %>
+        <div class="col-md-12 alert alert-info" role="alert">
+            No Books found!<br>
+        </div>
+        <% } %>
+        <% books.forEach(function(book){ %>
+        <div class="col-md-3 col-sm-6 ">
+                <div class="card text-white bg-dark mb-3 mt-5" style="max-width: 18rem;">
+                    <div class="img-thumbnail">
+                        <img src="<%= book.image %>" class="card-img-top" style="width: 100%;">
+                        <div class="card-body">
+                            <a href="/books/<%= book._id %>">
+                            <h4 class="card-title caption " style="margin: 0px;"><%=book.title%></h4>
+                            </a>
+                        </div>
+                        <div class="card-footer ">
+                            <small class="text-muted">Last updated : <%= moment(book.createdAt).fromNow() %></small>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <% }); %>
+    </div>
+</div>
+<%-include('../partials/footer') %>
